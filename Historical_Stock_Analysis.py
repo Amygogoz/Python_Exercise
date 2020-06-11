@@ -6,7 +6,6 @@ import pandas as pd
 # 1. 从fundemantals.csv开始！fundemantals.csv 是这些股票的年报数据
 
 sp_data = pd.read_csv('fundamentals.csv',index_col=0)
-# print(sp_data.info())
 
 #     S&P500股票在2015年net income的均值是多少？最大值比最小值多多少？
 
@@ -17,6 +16,7 @@ max_min = sp_data[sp_data['For Year']==2015]['Net Income'].max() - sp_data[sp_da
 print('The difference of max and min net income is {}.'.format(max_min))
 
 #     S&P500股票在2016年的固定资产（fixed assets）占总资产(total assets)比例的均值是多少？固定资产占总资产比例最小的股票的代码（ticker symbol）是什么？
+
 avg_ratio = sp_data[sp_data['For Year']==2016]['Fixed Assets'].sum() / sp_data[sp_data['For Year']==2016]['Total Assets'].sum()
 print('The average fixed assets ratio is {}'.format(avg_ratio))
 
@@ -46,6 +46,7 @@ secu_data['Rank_by_State'] = secu_data.groupby('State')['Date first added'].rank
 last_added = secu_data[secu_data['Rank_by_State']==1]
 print(last_added[['State','Security']])
 
+
 """题目三"""
 # 3. merge! 现在你需要同时处理来自两个表中的信息了
 
@@ -69,6 +70,7 @@ rd_by_sec_comp['Rank'] = rd_by_sec_comp.groupby('GICS Sector')['Research and Dev
 top_rd = rd_by_sec_comp[(rd_by_sec_comp['Rank']<=3) & (rd_by_sec_comp['Research and Development'] != 0)]
 
 print(top_rd)
+
 
 """题目四"""
 # 4. 现在让我们来看看更加复杂的数据。请导入price.csv，然后结合你的聪明才智回答以下问题
