@@ -77,7 +77,7 @@ def check_type(m):
 def check_id():
     id_num = input("Please enter your ID number or 'q' to quit: ")
     if id_num == 'q':
-        quit()
+        return
     else:
         valid_nums = True
         if len(id_num) != 18:
@@ -99,8 +99,8 @@ def check_id():
 def check_temp():
     temp = input("Please enter your temperature or 'q' to quit: ")
     if temp == 'q':
-        quit()
-    if check_type(temp):
+        return
+    elif check_type(temp):
         return float(temp)
     else:
         print("Your entered an invalid temperature. Please re-enter.")
@@ -108,7 +108,11 @@ def check_temp():
 
 def report():
     id_num = check_id()
+    if id_num == None:
+        return
     temp = check_temp()
+    if temp == None:
+        return
     p = Person(id_num, temp)
     if p.is_report():
         print("Since you are from Wuhan and have fever symptoms, please go to see a doctor as soon as possible.")
